@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://qk5sw1oylhum"]
+
+[ext_resource type="MeshLibrary" uid="uid://bhnt54v24htkd" path="res://scenes/mesh-library.meshlib" id="1_y3vs8"]
+[ext_resource type="PackedScene" uid="uid://cqx2yupch80e1" path="res://scenes/player/player.tscn" id="2_tucow"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q6lhc"]
+sky_top_color = Color(0, 0.517647, 0.980392, 1)
+sky_horizon_color = Color(0.57549, 0.788235, 0.972549, 1)
+ground_bottom_color = Color(0.301961, 0.635294, 0.909804, 1)
+ground_horizon_color = Color(0.57549, 0.788235, 0.972549, 1)
+
+[sub_resource type="Sky" id="Sky_m77h1"]
+sky_material = SubResource("ProceduralSkyMaterial_q6lhc")
+
+[sub_resource type="Environment" id="Environment_ults0"]
+background_mode = 2
+sky = SubResource("Sky_m77h1")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Play" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ults0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.94902, 0.933333, 0, 1)
+shadow_enabled = true
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_y3vs8")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65535, 65535, 0, 0, 65535, 0, 0, 65534, 0, 1, 65534, 0, -1, 65535, 0, -1, 0, 0, -65536, 0, 0, -65536, 65535, 0, -65536, 65534, 0, -65535, 65535, 0, -65535, 0, 0, -65535, 1, 0, -65536, 1, 0, -1, 1, 0, -65534, 1, 0, -65534, 0, 0, -65536, 2, 0, -1, 2, 0, -65535, 65534, 0, -65536, 65533, 0, -1, 65530, 0, -2, 65528, 0, -4, 65525, 0, -5, 65523, 0, -5, 65522, 0, -6, 65520, 0, -6, 65519, 0, -7, 65519, 0, -7, 65518, 0, -6, 65521, 0, -4, 65524, 0, -3, 65526, 0, -3, 65527, 0, -3, 65528, 0, -2, 65529, 0, -1, 65532, 0, -2, 65535, 0, -3, 0, 0, -3, 1, 0, -2, 1, 0, -2, 2, 0, -4, 0, 0, -4, 1, 0, -5, 65535, 0, -5, 65534, 0, -6, 65534, 0, -2, 0, 0, -3, 2, 0, -65534, 65532, 0, -65534, 65533, 0, -65534, 65534, 0, -65533, 65534, 0, -65534, 65535, 0, -65533, 65535, 0, -65533, 65533, 0, -65533, 65532, 0, -3, 65535, 0, -3, 65534, 0, -4, 65534, 0, -4, 65533, 0, -4, 65532, 0, -5, 65532, 0, -5, 65531, 0, -65532, 65530, 0, -65532, 65529, 0, -65531, 65528, 0, -65531, 65527, 0, -65530, 65527, 0, -65529, 65526, 0)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_tucow")]
