@@ -8,6 +8,16 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node",
+"class": &"WorldGenerator",
+"language": &"GDScript",
+"path": "res://scenes/world-generator.gd"
+}]
+_global_script_class_icons={
+"WorldGenerator": ""
+}
+
 [application]
 
 config/name="Voxel"
