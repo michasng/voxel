@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://qk5sw1oylhum"]
 
 [ext_resource type="MeshLibrary" uid="uid://bhnt54v24htkd" path="res://scenes/mesh-library.meshlib" id="1_y3vs8"]
-[ext_resource type="PackedScene" uid="uid://cqx2yupch80e1" path="res://scenes/player/player.tscn" id="2_tucow"]
+[ext_resource type="PackedScene" uid="uid://dkikjlbkgdn63" path="res://scenes/player/player.tscn" id="2_tucow"]
 [ext_resource type="Script" path="res://scenes/world-generator.gd" id="3_m5wur"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q6lhc"]

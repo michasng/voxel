@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqx2yupch80e1"]
+[gd_scene load_steps=8 format=3 uid="uid://dkikjlbkgdn63"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_83mya"]
+[ext_resource type="Script" path="res://scenes/state-machine/state-machine.gd" id="2_nw42c"]
+[ext_resource type="Script" path="res://scenes/player/movement/fall_state.gd" id="3_bun7w"]
+[ext_resource type="Script" path="res://scenes/player/movement/stand-state.gd" id="3_fms7n"]
+[ext_resource type="Script" path="res://scenes/player/movement/fly-state.gd" id="4_4hv44"]
+[ext_resource type="Script" path="res://scenes/player/movement/jump-state.gd" id="4_vk5bu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_278ko"]
 radius = 0.4
@@ -10,7 +15,6 @@ height = 1.8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.17968)
 script = ExtResource("1_83mya")
 jump_height = 1.2
-mouse_sens = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -18,3 +22,18 @@ shape = SubResource("CapsuleShape3D_278ko")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="MovementStateMachine" type="Node" parent="."]
+script = ExtResource("2_nw42c")
+
+[node name="StandState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("3_fms7n")
+
+[node name="JumpState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("4_vk5bu")
+
+[node name="FallState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("3_bun7w")
+
+[node name="FlyState" type="Node" parent="MovementStateMachine"]
+script = ExtResource("4_4hv44")
