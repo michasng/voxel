@@ -14,6 +14,16 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scenes/state-machine/base-state.gd"
 }, {
+"base": "GridMap",
+"class": &"Chunk",
+"language": &"GDScript",
+"path": "res://scenes/world/chunk.gd"
+}, {
+"base": "Node",
+"class": &"ChunkLoader",
+"language": &"GDScript",
+"path": "res://scenes/world/chunk_loader.gd"
+}, {
 "base": "MovementState",
 "class": &"FallState",
 "language": &"GDScript",
@@ -55,12 +65,19 @@ _global_script_classes=[{
 "path": "res://scenes/state-machine/state-machine.gd"
 }, {
 "base": "Node",
+"class": &"World",
+"language": &"GDScript",
+"path": "res://scenes/world/world.gd"
+}, {
+"base": "Node",
 "class": &"WorldGenerator",
 "language": &"GDScript",
 "path": "res://scenes/world-generator.gd"
 }]
 _global_script_class_icons={
 "BaseState": "",
+"Chunk": "",
+"ChunkLoader": "",
 "FallState": "",
 "FlyState": "",
 "JumpState": "",
@@ -69,6 +86,7 @@ _global_script_class_icons={
 "Player": "",
 "StandState": "",
 "StateMachine": "",
+"World": "",
 "WorldGenerator": ""
 }
 

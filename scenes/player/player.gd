@@ -9,7 +9,7 @@ class_name Player
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	movement_state_machine.set_state(movement_state_machine.get_node("StandState"))
+	movement_state_machine.set_state(movement_state_machine.get_node("FlyState"))
 
 
 func _input(event: InputEvent) -> void:

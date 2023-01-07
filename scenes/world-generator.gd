@@ -1,26 +1,35 @@
 extends Node
 class_name WorldGenerator
 
-@export var height_noise: Noise
-@export var height_min: int = 50
-@export var height_max: int = 100
+@export var base_terrain_height: int = 50
+@export var height_noise: FastNoiseLite
+@export var height_amplitude: int = 3
 
-@export var grid_map: GridMap
+@export var world: World
+
 
 func _ready():
-	for x in range(100):
-		for z in range(100):
-			generate(x, z)
+	height_noise.seed = randi()
 
-func generate(x: int, z: int):
-	var height = get_height(x, z)
-	for y in range(height + 1):
-		grid_map.set_cell_item(Vector3i(x, y, z), 0)
+
+func generate_chunk(chunk: Chunk):
+	for x in range(chunk.size.x):
+		for y in range(chunk.size.y):
+			for z in range(chunk.size.z):
+				var position_in_chunk = Vector3i(x, y, z)
+				var world_position = Vector3i(chunk.position) + position_in_chunk
+				var block = get_block(world_position)
+				chunk.set_cell_item(position_in_chunk, block)
+
+
+func get_block(world_position: Vector3i) -> int:
+	var height = get_height(world_position.x, world_position.z)
+	if world_position.y < height:
+		return 0
+	return GridMap.INVALID_CELL_ITEM
+
 
 func get_height(x: int, z: int):
-	var noise_value = height_noise.get_noise_2d(x, z)
-	var height = int(height_min + noise_value * (height_max - height_min))
+	var height = base_terrain_height + int(height_noise.get_noise_2d(x, z) * height_amplitude)
 	return height
-
-	
 
