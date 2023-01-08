@@ -9,10 +9,11 @@ class_name ChunkLoader
 var thread: Thread = Thread.new()
 var semaphore: Semaphore = Semaphore.new()
 var chunks_to_load: Array[Vector3i] = Array()
-var loaded_chunks: Dictionary = {} # Dictionary[Vector3i, bool]
 var mutex: Mutex = Mutex.new()
 var exit_thread: bool = false
 
+
+var shape: Shape3D
 
 func _ready():
 	thread.start(_generate_chunks_loop)
@@ -33,8 +34,8 @@ func _generate_chunks_loop():
 			var items = world_generator.generate_chunk(chunk_position)
 			# GridMap creation and access is not thread safe
 			# https://github.com/godotengine/godot/issues/42917 and 68597
-			world.call_deferred("create_chunk", chunk_position, items)
-			loaded_chunks[chunk_position] = true
+			world.call_deferred("place_chunk_items", chunk_position, items)
+			world.chunks[chunk_position] = Chunk.new(chunk_position)
 		chunks_to_load.clear()
 		mutex.unlock()
 
@@ -47,7 +48,7 @@ func _find_chunks_to_load():
 		for y in range(first_chunk.y, last_chunk.y + 1):
 			for z in range(first_chunk.z, last_chunk.z + 1):
 				var chunk_position = Vector3i(x, y, z)
-				if chunk_position in loaded_chunks or chunk_position in chunks_to_load:
+				if chunk_position in world.chunks or chunk_position in chunks_to_load:
 					continue
 				chunks_to_load.append(chunk_position)
 	if not chunks_to_load.is_empty():

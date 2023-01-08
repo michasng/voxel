@@ -37,14 +37,15 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("2_tucow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 62, 0)
 
-[node name="World" type="Node" parent="."]
-script = ExtResource("3_0kxv0")
+[node name="World" type="GridMap" parent="."]
 mesh_library = ExtResource("1_y3vs8")
+cell_size = Vector3(1, 1, 1)
+cell_octant_size = 16
+script = ExtResource("3_0kxv0")
 
 [node name="WorldGenerator" type="Node" parent="." node_paths=PackedStringArray("world")]
 script = ExtResource("3_m5wur")
 height_noise = SubResource("FastNoiseLite_0iv81")
-height_amplitude = 10
 world = NodePath("../World")
 
 [node name="ChunkLoader" type="Node" parent="." node_paths=PackedStringArray("world", "world_generator", "center_body")]

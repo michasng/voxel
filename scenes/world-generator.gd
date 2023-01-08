@@ -3,7 +3,7 @@ class_name WorldGenerator
 
 @export var base_terrain_height: int = 50
 @export var height_noise: FastNoiseLite
-@export var height_amplitude: int = 3
+@export var height_amplitude: int = 10
 
 @export var world: World
 
@@ -19,7 +19,9 @@ func generate_chunk(chunk_position: Vector3i) -> Dictionary:
 			for z in range(Chunk.size.z):
 				var position_in_chunk = Vector3i(x, y, z)
 				var world_position = chunk_position * Chunk.size + position_in_chunk
-				items[position_in_chunk] = get_block(world_position)
+				var block = get_block(world_position)
+				if block != GridMap.INVALID_CELL_ITEM:
+					items[position_in_chunk] = block
 	return items
 
 

@@ -14,7 +14,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scenes/state-machine/base-state.gd"
 }, {
-"base": "GridMap",
+"base": "Object",
 "class": &"Chunk",
 "language": &"GDScript",
 "path": "res://scenes/world/chunk.gd"
@@ -64,7 +64,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scenes/state-machine/state-machine.gd"
 }, {
-"base": "Node",
+"base": "GridMap",
 "class": &"World",
 "language": &"GDScript",
 "path": "res://scenes/world/world.gd"
