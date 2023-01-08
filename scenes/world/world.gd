@@ -7,8 +7,10 @@ class_name World
 var chunk_resource = preload("res://scenes/world/chunk.gd")
 
 
-func create_chunk(chunk_position: Vector3i) -> Chunk:
+func create_chunk(chunk_position: Vector3i, items: Dictionary) -> Chunk:
 	var chunk = chunk_resource.new(chunk_position, mesh_library)
+	for position_in_chunk in items:
+		chunk.set_cell_item(position_in_chunk, items[position_in_chunk])
 	add_child(chunk)
 	print("created chunk: ", chunk.name)
 	return chunk

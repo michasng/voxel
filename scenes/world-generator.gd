@@ -12,14 +12,15 @@ func _ready():
 	height_noise.seed = randi()
 
 
-func generate_chunk(chunk: Chunk):
-	for x in range(chunk.size.x):
-		for y in range(chunk.size.y):
-			for z in range(chunk.size.z):
+func generate_chunk(chunk_position: Vector3i) -> Dictionary:
+	var items = {} # Dictionary[Vector3i, int]
+	for x in range(Chunk.size.x):
+		for y in range(Chunk.size.y):
+			for z in range(Chunk.size.z):
 				var position_in_chunk = Vector3i(x, y, z)
-				var world_position = Vector3i(chunk.position) + position_in_chunk
-				var block = get_block(world_position)
-				chunk.set_cell_item(position_in_chunk, block)
+				var world_position = chunk_position * Chunk.size + position_in_chunk
+				items[position_in_chunk] = get_block(world_position)
+	return items
 
 
 func get_block(world_position: Vector3i) -> int:
