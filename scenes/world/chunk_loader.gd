@@ -16,11 +16,11 @@ var exit_thread: bool = false
 var shape: Shape3D
 
 func _ready():
+	var timer = Timer.new()
+	add_child(timer)
+	timer.connect("timeout", _find_chunks_to_load)
+	timer.start(0.1)
 	thread.start(_generate_chunks_loop)
-
-
-func _process(_delta):
-	_find_chunks_to_load()
 
 
 func _generate_chunks_loop():
