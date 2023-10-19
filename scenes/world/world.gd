@@ -5,11 +5,12 @@ class_name World
 var chunks: Dictionary = {} # Dictionary[Vector3i, Chunk]
 
 
-func place_chunk_items(chunk_position: Vector3i, items: Dictionary):
-	var world_position = chunk_position * Chunk.size
-	for position_in_chunk in items:
-		set_cell_item(world_position + position_in_chunk, items[position_in_chunk])
-	print("placed chunk items: ", chunk_position)
+func place_chunk_at(chunk_position: Vector3i):
+	var chunk = chunks[chunk_position]
+	var world_position = chunk.position * Chunk.size
+	for position_in_chunk in chunk.items:
+		set_cell_item(world_position + position_in_chunk, chunk.items[position_in_chunk])
+	print("placed chunk: ", chunk.position)
 
 
 func get_chunk(chunk_position: Vector3i) -> Chunk:

@@ -12,13 +12,11 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func get_view_direction() -> Transform3D:
-	@warning_ignore(assert_always_false)
 	assert(false, "method not implemented")
 	return Transform3D()
 
 
 func get_move_direction() -> Vector2:
-	@warning_ignore(assert_always_false)
 	assert(false, "method not implemented")
 	return Vector2.ZERO
 
@@ -30,7 +28,6 @@ func get_transformed_move_direction() -> Vector3:
 
 
 func is_jump_action() -> bool:
-	@warning_ignore(assert_always_false)
 	assert(false, "method not implemented")
 	return false
 
